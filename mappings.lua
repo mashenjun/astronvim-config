@@ -9,14 +9,18 @@ return {
     -- second key is the lefthand side of the map
 
     -- navigate buffer tabs with `H` and `L`
-    -- L = {
-    --   function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-    --   desc = "Next buffer",
-    -- },
-    -- H = {
-    --   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-    --   desc = "Previous buffer",
-    -- },
+    L = {
+      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+      desc = "Next buffer",
+    },
+    H = {
+      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+      desc = "Previous buffer",
+    },
+    ["oo"] = { "o<Esc>k", noremap = true, silent = true }, -- insert a new line belowe
+    ["OO"] = { "O<Esc>j", noremap = true, silent = true }, -- inert a new line above
+    ["<C-j>"] = { ":m .+1<CR>==", noremap = true, silent = true }, -- move current line down
+    ["<C-k>"] = { ":m .-2<CR>==", noremap = true, silent = true }, -- move current line up
 
     -- mappings seen under group name "Buffer"
     ["<leader>bD"] = {
@@ -36,5 +40,10 @@ return {
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+  },
+  v = {
+    ["p"] = { '"_dP', noremap = true, silent = true },
+    ["<C-j>"] = { ":m '>+1<CR>gv=gv", noremap = true, silent = true }, -- move selected content up
+    ["<C-k>"] = { ":m '<-2<CR>gv=gv", noremap = true, silent = true }, -- move selected content down
   },
 }
