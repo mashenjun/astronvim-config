@@ -104,4 +104,10 @@ return {
   --       "folke/trouble.nvim",
   --       cmd = "TroubleToggle",
   --     },
+  { "fatih/vim-go", ft = { "go" } },
+  {
+    "ahmedkhalf/lsp-rooter.nvim",
+    event = "BufRead",
+    config = function() require("lsp-rooter").setup() end,
+  },
 }
